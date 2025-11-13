@@ -1,0 +1,84 @@
+/* Логотип - круг с сине-зелёным градиентом и бликом */
+.logo {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #06deee, #46d372);
+    border: 2.5px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* Блик на логотипе */
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 14%;
+    left: 14%;
+    width: 27%;
+    height: 27%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.637);
+    z-index: 1;
+}
+
+/* Контейнер для хедера */
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .header-content {
+        gap: 15px;
+        padding: 0 15px;
+    }
+    
+    .logo {
+        width: 50px;
+        height: 50px;
+        border-width: 2px;
+    }
+    
+    .logo::before {
+        top: 12%;
+        left: 12%;
+        width: 30%;
+        height: 30%;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        gap: 12px;
+        padding: 0 10px;
+    }
+    
+    .logo {
+        width: 40px;
+        height: 40px;
+        border-width: 1.5px;
+    }
+    
+    .logo::before {
+        top: 10%;
+        left: 10%;
+        width: 35%;
+        height: 35%;
+    }
+    
+    header h1 {
+        font-size: 1.3em;
+    }
+}

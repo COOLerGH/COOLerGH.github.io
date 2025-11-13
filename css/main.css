@@ -1,0 +1,254 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+header {
+  background-image: url('../images/header.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+nav {
+  background-color: #34495e;
+  width: 200px;
+  padding: 1rem;
+  flex-shrink: 0;
+  min-width: 150px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 0.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  background-color: #1abc9c;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+  background-image: url('../images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+footer {
+  background-image: url('../images/footer.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  flex-shrink: 0;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  color: #45ed20;
+  text-shadow: 
+    1px 1px 0 #0a0c28,
+    -1px -1px 0 #1a237e,
+    1px -1px 0 #1a237e,
+    -1px 1px 0 #1a237e;
+    font-size: 300%;
+}
+
+.task-link {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  transition: background-color 0.3s;
+}
+
+.task-link:hover {
+  background-color: #2980b9;
+}
+
+/* Стили для блоков с изображениями и текстом */
+.image-text-blocks {
+  margin-top: 2rem;
+}
+
+.image-text-block {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 0; /* Убрали скругленные углы */
+  overflow: hidden;
+}
+
+/* Классы для обтекания */
+.left-img {
+  float: left;
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin: 0 1.5rem 0.5rem 0;
+}
+
+.right-img {
+  float: right;
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin: 0 0 0.5rem 1.5rem;
+}
+
+.text-content p {
+  margin-bottom: 0.5rem;
+  text-align: justify;
+}
+
+/* Гарантируем, что горизонтального скролла не будет */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Принудительно запрещаем изменение порядка элементов */
+nav {
+  order: 1 !important;
+}
+
+main {
+  order: 2 !important;
+}
+
+/* Адаптивность для мобильных устройств - БЕЗ ИЗМЕНЕНИЯ ПОРЯДКА */
+@media (max-width: 768px) {
+  .content-wrapper {
+      padding: 1rem;
+  }
+  
+  main {
+      padding: 1rem;
+  }
+  
+  .image-text-block {
+      padding: 1rem;
+  }
+  
+  .left-img,
+  .right-img {
+      width: 150px;
+      height: 120px;
+      margin: 0 1rem 0.5rem 0;
+  }
+  
+  .right-img {
+      margin: 0 0 0.5rem 1rem;
+  }
+  
+  /* Уменьшаем отступы для экономии места */
+  nav {
+      padding: 0.5rem;
+      min-width: 120px;
+  }
+  
+  nav a {
+      padding: 0.3rem 0.5rem;
+      font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+      padding: 0.5rem;
+  }
+  
+  .image-text-block {
+      padding: 0.8rem;
+  }
+  
+  .left-img,
+  .right-img {
+      width: 120px;
+      height: 100px;
+      margin: 0 0.8rem 0.5rem 0;
+  }
+  
+  .right-img {
+      margin: 0 0 0.5rem 0.8rem;
+  }
+  
+  nav {
+      padding: 0.3rem;
+      min-width: 100px;
+  }
+  
+  nav a {
+      padding: 0.2rem 0.3rem;
+      font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  nav {
+      min-width: 80px;
+  }
+  
+  nav a {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.2rem;
+  }
+  
+  main {
+      padding: 0.3rem;
+  }
+  
+  .image-text-block {
+      padding: 0.5rem;
+  }
+  
+  .left-img,
+  .right-img {
+      width: 100px;
+      height: 80px;
+      margin: 0 0.5rem 0.3rem 0;
+  }
+  
+  .right-img {
+      margin: 0 0 0.3rem 0.5rem;
+  }
+}
