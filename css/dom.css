@@ -72,7 +72,6 @@ nav a {
     display: block;
     padding: 0.5rem;
     transition: background-color 0.3s;
-    white-space: nowrap;
 }
 
 nav a:hover {
@@ -373,7 +372,7 @@ h1 {
     pointer-events: none;
 }
 
-/* ДОБАВЛЯЕМ ЗАДЕРЖКУ ДЛЯ ПРАВИЛЬНОГО ОТВЕТА */
+
 .correct.slide-down-delayed {
     animation: 
         correctPulse 0.5s ease-out forwards,
@@ -427,14 +426,16 @@ h1 {
         font-size: 0.9rem;
     }
     
+    /* Уменьшаем ширину навигации в 2 раза */
     nav {
+        width: 100px;
+        min-width: 75px;
         padding: 0.5rem;
-        min-width: 120px;
     }
     
     nav a {
-        padding: 0.3rem 0.5rem;
-        font-size: 0.9rem;
+        padding: 0.3rem 0.3rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -469,14 +470,16 @@ h1 {
         font-size: 0.85rem;
     }
     
+    /* Еще уже для телефонов */
     nav {
+        width: 80px;
+        min-width: 60px;
         padding: 0.3rem;
-        min-width: 100px;
     }
     
     nav a {
-        padding: 0.2rem 0.3rem;
-        font-size: 0.8rem;
+        padding: 0.2rem 0.2rem;
+        font-size: 0.7rem;
     }
     
     .task-title {
@@ -497,13 +500,15 @@ h1 {
 }
 
 @media (max-width: 320px) {
+    /* Минимальная ширина навигации */
     nav {
-        min-width: 80px;
+        width: 60px;
+        min-width: 50px;
     }
     
     nav a {
-        font-size: 0.7rem;
-        padding: 0.1rem 0.2rem;
+        font-size: 0.6rem;
+        padding: 0.1rem 0.1rem;
     }
     
     .content-wrapper {
