@@ -34,9 +34,10 @@ header {
   flex-shrink: 0;
 }
 
+/* Боковая навигация - основная ширина */
 nav {
   background-color: #34495e;
-  width: 200px;
+  width: 200px; /* обычная ширина на десктопе */
   padding: 1rem;
   flex-shrink: 0;
   min-width: 150px;
@@ -145,7 +146,7 @@ h1 {
   text-align: justify;
 }
 
-/* Адаптивность для мобильных устройств - УВЕЛИЧИВАЕМ УЗОСТЬ МЕНЮ */
+/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .content-wrapper {
     padding: 1rem;
@@ -170,16 +171,16 @@ h1 {
     margin: 0 0 0.5rem 1rem;
   }
   
-  /* Уменьшаем ширину меню в 2 раза для планшетов */
+  /* Делаем навигацию в 2 раза уже на планшетах */
   nav {
-    width: 100px; /* было 200px, стало 100px */
+    width: 100px; /* было 200px, стало 100px - в 2 раза уже */
+    min-width: 75px; /* было 150px, стало 75px - в 2 раза уже */
     padding: 0.5rem;
-    min-width: 80px; /* уменьшаем минимальную ширину */
   }
   
   nav a {
-    padding: 0.3rem 0.3rem; /* уменьшаем отступы */
-    font-size: 0.8rem; /* уменьшаем шрифт */
+    padding: 0.3rem 0.3rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -203,11 +204,11 @@ h1 {
     margin: 0 0 0.5rem 0.8rem;
   }
   
-  /* Еще больше уменьшаем для маленьких телефонов */
+  /* Еще уже для телефонов */
   nav {
     width: 80px; /* еще уже */
-    padding: 0.3rem;
     min-width: 60px;
+    padding: 0.3rem;
   }
   
   nav a {
