@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
@@ -35,6 +40,7 @@ nav {
   padding: 1rem;
   flex-shrink: 0;
   min-width: 150px;
+  order: 1;
 }
 
 nav ul {
@@ -67,6 +73,7 @@ main {
   background-attachment: fixed;
   min-width: 0;
   overflow-x: hidden;
+  order: 2;
 }
 
 footer {
@@ -87,7 +94,7 @@ h1 {
     -1px -1px 0 #1a237e,
     1px -1px 0 #1a237e,
     -1px 1px 0 #1a237e;
-    font-size: 300%;
+  font-size: 300%;
 }
 
 .task-link {
@@ -104,7 +111,6 @@ h1 {
   background-color: #2980b9;
 }
 
-/* Стили для блоков с изображениями и текстом */
 .image-text-blocks {
   margin-top: 2rem;
 }
@@ -114,11 +120,10 @@ h1 {
   padding: 1.5rem;
   background-color: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  border-radius: 0; /* Убрали скругленные углы */
+  border-radius: 0;
   overflow: hidden;
 }
 
-/* Классы для обтекания */
 .left-img {
   float: left;
   width: 200px;
@@ -140,115 +145,104 @@ h1 {
   text-align: justify;
 }
 
-/* Гарантируем, что горизонтального скролла не будет */
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-/* Принудительно запрещаем изменение порядка элементов */
-nav {
-  order: 1 !important;
-}
-
-main {
-  order: 2 !important;
-}
-
-/* Адаптивность для мобильных устройств - БЕЗ ИЗМЕНЕНИЯ ПОРЯДКА */
+/* Адаптивность для мобильных устройств - УВЕЛИЧИВАЕМ УЗОСТЬ МЕНЮ */
 @media (max-width: 768px) {
   .content-wrapper {
-      padding: 1rem;
+    padding: 1rem;
   }
   
   main {
-      padding: 1rem;
+    padding: 1rem;
   }
   
   .image-text-block {
-      padding: 1rem;
+    padding: 1rem;
   }
   
   .left-img,
   .right-img {
-      width: 150px;
-      height: 120px;
-      margin: 0 1rem 0.5rem 0;
+    width: 150px;
+    height: 120px;
+    margin: 0 1rem 0.5rem 0;
   }
   
   .right-img {
-      margin: 0 0 0.5rem 1rem;
+    margin: 0 0 0.5rem 1rem;
   }
   
-  /* Уменьшаем отступы для экономии места */
+  /* Уменьшаем ширину меню в 2 раза для планшетов */
   nav {
-      padding: 0.5rem;
-      min-width: 120px;
+    width: 100px; /* было 200px, стало 100px */
+    padding: 0.5rem;
+    min-width: 80px; /* уменьшаем минимальную ширину */
   }
   
   nav a {
-      padding: 0.3rem 0.5rem;
-      font-size: 0.9rem;
+    padding: 0.3rem 0.3rem; /* уменьшаем отступы */
+    font-size: 0.8rem; /* уменьшаем шрифт */
   }
 }
 
 @media (max-width: 480px) {
   main {
-      padding: 0.5rem;
+    padding: 0.5rem;
   }
   
   .image-text-block {
-      padding: 0.8rem;
+    padding: 0.8rem;
   }
   
   .left-img,
   .right-img {
-      width: 120px;
-      height: 100px;
-      margin: 0 0.8rem 0.5rem 0;
+    width: 120px;
+    height: 100px;
+    margin: 0 0.8rem 0.5rem 0;
   }
   
   .right-img {
-      margin: 0 0 0.5rem 0.8rem;
+    margin: 0 0 0.5rem 0.8rem;
   }
   
+  /* Еще больше уменьшаем для маленьких телефонов */
   nav {
-      padding: 0.3rem;
-      min-width: 100px;
+    width: 80px; /* еще уже */
+    padding: 0.3rem;
+    min-width: 60px;
   }
   
   nav a {
-      padding: 0.2rem 0.3rem;
-      font-size: 0.8rem;
+    padding: 0.2rem 0.2rem;
+    font-size: 0.7rem;
   }
 }
 
 @media (max-width: 320px) {
   nav {
-      min-width: 80px;
+    width: 60px; /* минимальная ширина */
+    min-width: 50px;
   }
   
   nav a {
-      font-size: 0.7rem;
-      padding: 0.1rem 0.2rem;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.1rem;
   }
   
   main {
-      padding: 0.3rem;
+    padding: 0.3rem;
   }
   
   .image-text-block {
-      padding: 0.5rem;
+    padding: 0.5rem;
   }
   
   .left-img,
   .right-img {
-      width: 100px;
-      height: 80px;
-      margin: 0 0.5rem 0.3rem 0;
+    width: 100px;
+    height: 80px;
+    margin: 0 0.5rem 0.3rem 0;
   }
   
   .right-img {
-      margin: 0 0 0.3rem 0.5rem;
+    margin: 0 0 0.3rem 0.5rem;
   }
 }

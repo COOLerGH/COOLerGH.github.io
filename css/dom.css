@@ -1,19 +1,15 @@
-/* task3.css */
+/* task3.css - оптимизированная версия с восстановленной анимацией */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-h1 {
-    margin-bottom: 1rem;
-    color: #45ed20;
-    text-shadow: 
-      1px 1px 0 #0a0c28,
-      -1px -1px 0 #1a237e,
-      1px -1px 0 #1a237e,
-      -1px 1px 0 #1a237e;
-      font-size: 300%;
-  }
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -32,6 +28,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     width: 100%;
+    position: relative;
 }
 
 .main-content {
@@ -58,6 +55,7 @@ nav {
     padding: 1rem;
     flex-shrink: 0;
     min-width: 150px;
+    order: 1;
 }
 
 nav ul {
@@ -86,6 +84,7 @@ nav a:hover {
     padding: 2rem;
     min-width: 0;
     overflow-x: hidden;
+    order: 2;
 }
 
 footer {
@@ -98,6 +97,17 @@ footer {
     width: 100%;
     margin-top: auto;
     flex-shrink: 0;
+}
+
+h1 {
+    margin-bottom: 1rem;
+    color: #45ed20;
+    text-shadow: 
+      1px 1px 0 #0a0c28,
+      -1px -1px 0 #1a237e,
+      1px -1px 0 #1a237e,
+      -1px 1px 0 #1a237e;
+    font-size: 300%;
 }
 
 .task-title {
@@ -122,19 +132,12 @@ footer {
     text-align: center;
 }
 
-.test-area {
+.test-area, .stats, .question-history {
     margin: 2rem 0;
     padding: 1.5rem;
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     min-height: 400px;
-}
-
-.stats, .question-history {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
 }
 
 .stats h2, .question-history h2 {
@@ -242,7 +245,7 @@ footer {
     width: 100%;
 }
 
-/* Блок "Вопросы закончились" - ОБНОВЛЕНО */
+/* Блок "Вопросы закончились" */
 .no-questions {
     text-align: center;
     padding: 40px 20px;
@@ -288,58 +291,6 @@ footer {
     transform: scale(0.95);
 }
 
-/* Анимации для теста */
-@keyframes correctPulse {
-    0% { 
-        transform: scale(1); 
-        box-shadow: 0 0 0 rgba(76, 175, 80, 0);
-    }
-    50% { 
-        transform: scale(1.15); 
-        box-shadow: 0 0 25px rgba(76, 175, 80, 0.6);
-    }
-    100% { 
-        transform: scale(1.1); 
-        box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
-    }
-}
-
-.answer.correct {
-    animation: correctPulse 0.5s ease-out forwards;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-    20%, 40%, 60%, 80% { transform: translateX(5px); }
-}
-
-.shake {
-    animation: shake 0.5s;
-}
-
-/* АНИМАЦИЯ ДЛЯ ПЕРЕМЕЩЕНИЯ ВНИЗ */
-@keyframes slideDown {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    70% {
-        transform: translateY(60px);
-        opacity: 0.7;
-    }
-    100% {
-        transform: translateY(80px);
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-
-.slide-down {
-    animation: slideDown 0.8s ease-out forwards !important;
-    pointer-events: none;
-}
-
 /* Стили для истории вопросов */
 .history-item {
     padding: 15px;
@@ -370,24 +321,64 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Гарантируем, что горизонтального скролла не будет */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
+/* Анимации для теста */
+@keyframes correctPulse {
+    0% { 
+        transform: scale(1); 
+        box-shadow: 0 0 0 rgba(76, 175, 80, 0);
+    }
+    50% { 
+        transform: scale(1.15); 
+        box-shadow: 0 0 25px rgba(76, 175, 80, 0.6);
+    }
+    100% { 
+        transform: scale(1.1); 
+        box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+    }
 }
 
-.page-wrapper {
-    position: relative;
-    width: 100%;
+.answer.correct {
+    animation: correctPulse 0.5s ease-out forwards;
 }
 
-/* Принудительно запрещаем изменение порядка элементов */
-nav {
-    order: 1 !important;
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
-.content-wrapper {
-    order: 2 !important;
+.shake {
+    animation: shake 0.5s;
+}
+
+/* ВОССТАНАВЛИВАЕМ АНИМАЦИЮ ДЛЯ ПЕРЕМЕЩЕНИЯ ВНИЗ - КРИТИЧЕСКИ ВАЖНО */
+@keyframes slideDown {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    70% {
+        transform: translateY(60px);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(80px);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.slide-down {
+    animation: slideDown 0.8s ease-out forwards !important;
+    pointer-events: none;
+}
+
+/* ДОБАВЛЯЕМ ЗАДЕРЖКУ ДЛЯ ПРАВИЛЬНОГО ОТВЕТА */
+.correct.slide-down-delayed {
+    animation: 
+        correctPulse 0.5s ease-out forwards,
+        slideDown 0.8s ease-out 1s forwards !important;
+    pointer-events: none;
 }
 
 /* Медиа-запросы для адаптивности */
@@ -411,6 +402,7 @@ nav {
     .test-area, .stats, .question-history {
         padding: 1rem;
         margin: 1rem 0;
+        min-height: 300px;
     }
     
     .answers-container {
@@ -493,6 +485,7 @@ nav {
     
     .test-area, .stats, .question-history {
         padding: 0.5rem;
+        min-height: 250px;
     }
     
     .marker {
@@ -534,5 +527,9 @@ nav {
     .retry-button {
         padding: 6px 12px;
         font-size: 0.8rem;
+    }
+    
+    .test-area, .stats, .question-history {
+        min-height: 200px;
     }
 }
