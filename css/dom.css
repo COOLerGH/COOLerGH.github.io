@@ -1,4 +1,4 @@
-/* task3.css - оптимизированная версия с восстановленной анимацией */
+
 * {
     margin: 0;
     padding: 0;
@@ -350,7 +350,7 @@ h1 {
     animation: shake 0.5s;
 }
 
-/* ВОССТАНАВЛИВАЕМ АНИМАЦИЮ ДЛЯ ПЕРЕМЕЩЕНИЯ ВНИЗ - КРИТИЧЕСКИ ВАЖНО */
+
 @keyframes slideDown {
     0% {
         transform: translateY(0);
@@ -426,7 +426,7 @@ h1 {
         font-size: 0.9rem;
     }
     
-    /* Уменьшаем ширину навигации в 2 раза */
+
     nav {
         width: 100px;
         min-width: 75px;
@@ -470,7 +470,7 @@ h1 {
         font-size: 0.85rem;
     }
     
-    /* Еще уже для телефонов */
+
     nav {
         width: 80px;
         min-width: 60px;
@@ -500,7 +500,7 @@ h1 {
 }
 
 @media (max-width: 320px) {
-    /* Минимальная ширина навигации */
+
     nav {
         width: 60px;
         min-width: 50px;

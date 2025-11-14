@@ -34,10 +34,9 @@ header {
   flex-shrink: 0;
 }
 
-/* Боковая навигация - основная ширина */
 nav {
   background-color: #34495e;
-  width: 200px; /* обычная ширина на десктопе */
+  width: 200px;
   padding: 1rem;
   flex-shrink: 0;
   min-width: 150px;
@@ -171,10 +170,10 @@ h1 {
     margin: 0 0 0.5rem 1rem;
   }
   
-  /* Делаем навигацию в 2 раза уже на планшетах */
+ 
   nav {
-    width: 100px; /* было 200px, стало 100px - в 2 раза уже */
-    min-width: 75px; /* было 150px, стало 75px - в 2 раза уже */
+    width: 100px;
+    min-width: 75px;
     padding: 0.5rem;
   }
   
@@ -204,9 +203,9 @@ h1 {
     margin: 0 0 0.5rem 0.8rem;
   }
   
-  /* Еще уже для телефонов */
+ 
   nav {
-    width: 80px; /* еще уже */
+    width: 80px;
     min-width: 60px;
     padding: 0.3rem;
   }
@@ -219,7 +218,7 @@ h1 {
 
 @media (max-width: 320px) {
   nav {
-    width: 60px; /* минимальная ширина */
+    width: 60px;
     min-width: 50px;
   }
   

@@ -151,13 +151,13 @@ function handleAnswerClick(e) {
 
 // Обработка ответа
 function processAnswer(answerElement, isCorrect, questionContainer) {
-    // Убираем тряску
+ 
     const allAnswers = questionContainer.querySelectorAll('.answer');
     allAnswers.forEach(answer => {
         answer.classList.remove('shake');
     });
     
-    // Добавляем маркер правильности
+    // Маркер правильности
     const questionText = questionContainer.querySelector('.question-text');
     const marker = document.createElement('span');
     marker.className = `marker ${isCorrect ? 'correct-marker' : 'incorrect-marker'}`;
@@ -169,7 +169,6 @@ function processAnswer(answerElement, isCorrect, questionContainer) {
         correctAnswersCount++;
         answerElement.classList.add('correct');
         
-        // ДОБАВЛЯЕМ пояснение только если оно есть
         const explanation = answerElement.getAttribute('data-explanation');
         if (explanation) {
             const explanationElement = document.createElement('div');
@@ -180,14 +179,14 @@ function processAnswer(answerElement, isCorrect, questionContainer) {
             answerElement.style.minHeight = '100px';
         }
         
-        // ПЕРВЫЙ ЭТАП: перемещаем только неправильные ответы вниз
+
         allAnswers.forEach(answer => {
             if (answer !== answerElement && answer.getAttribute('data-correct') === 'false') {
                 answer.classList.add('slide-down');
             }
         });
         
-        // Сохраняем информацию о вопросе
+
         answeredQuestions.push({
             question: currentQuestions[currentQuestionIndex].question,
             userAnswer: answerElement.textContent.trim(),
@@ -196,11 +195,11 @@ function processAnswer(answerElement, isCorrect, questionContainer) {
             isCorrect: true
         });
         
-        // ВТОРОЙ ЭТАП: через 2 секунды убираем и правильный ответ
+
         setTimeout(() => {
             answerElement.classList.add('slide-down');
             
-            // Переходим к следующему вопросу
+
             setTimeout(() => {
                 currentQuestionIndex++;
                 isAnswerSelected = false;
@@ -212,7 +211,7 @@ function processAnswer(answerElement, isCorrect, questionContainer) {
         // Неправильный ответ
         answerElement.classList.add('incorrect');
         
-        // Сохраняем информацию о вопросе
+
         answeredQuestions.push({
             question: currentQuestions[currentQuestionIndex].question,
             userAnswer: answerElement.textContent.trim(),
@@ -221,13 +220,13 @@ function processAnswer(answerElement, isCorrect, questionContainer) {
             isCorrect: false
         });
         
-        // Перемещаем ВСЕ ответы вниз (включая выбранный)
+
         setTimeout(() => {
             allAnswers.forEach(answer => {
                 answer.classList.add('slide-down');
             });
             
-            // Переходим к следующему вопросу
+
             setTimeout(() => {
                 currentQuestionIndex++;
                 isAnswerSelected = false;
@@ -279,14 +278,14 @@ function showQuestionHistory() {
 function toggleHistoryAnswer(index) {
     const answerElement = document.getElementById(`history-answer-${index}`);
     
-    // Скрываем все другие ответы
+
     document.querySelectorAll('.history-answer').forEach(el => {
         if (el !== answerElement) {
             el.style.display = 'none';
         }
     });
     
-    // Переключаем текущий ответ
+
     if (answerElement.style.display === 'block') {
         answerElement.style.display = 'none';
     } else {
