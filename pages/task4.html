@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Задание 4</title>
+  <link rel="stylesheet" href="../css/pic.css" />
+  <link rel="stylesheet" href="../css/logo.css" />
+  <link rel="stylesheet" href="../css/words.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo"></div>
+      <h1>Сортировка и перетаскивание слов</h1>
+    </div>
+  </header>
+  
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="../index.html">Главная страница</a></li>
+        <li><a href="task1.html">Задание 1</a></li>
+        <li><a href="task2.html">Задание 2</a></li>
+        <li><a href="task3.html">Задание 3</a></li>
+        <li><a href="task4.html">Задание 4</a></li>
+      </ul>
+    </nav>
+    
+    <div class="content-wrapper words-page">
+      <h1 class="task-title">Задание 4</h1>
+      
+      <div class="top-panel">
+        <div class="source-area drop-area" id="sourceArea" data-zone="source">
+        </div>
+      </div>
+      
+      <div class="bottom-row">
+        <div class="panel-side">
+          <div class="target-area drop-area" id="targetArea" data-zone="target">
+          </div>
+        </div>
+        
+        <div class="panel-main">
+          <div class="input-section">
+            <div class="input-row">
+              <textarea id="wordsInput" placeholder=""></textarea>
+              <div class="input-controls">
+                <button id="parseBtn" class="button">Разобрать</button>
+                <button id="clearBtn" class="button" style="background:#888">Очистить</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="display-panel">
+            <div id="displayWord" class="display-word"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025. Никакие права не защищены.</p>
+  </footer>
+
+  <script src="../js/words.js"></script>
+</body>
+</html>
