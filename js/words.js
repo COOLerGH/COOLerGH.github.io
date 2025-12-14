@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nums.forEach((w, i) => result.push({key: `n${i+1}`, text: w, group: 'num'}));
         
         return result;
+        
     }
 
     function createWordElement(item, index) {
@@ -315,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     parseBtn.addEventListener('click', () => {
         const arr = parseInput(input.value);
+        
         sourceArea.innerHTML = '';
         targetArea.innerHTML = '';
         display.innerHTML = '';

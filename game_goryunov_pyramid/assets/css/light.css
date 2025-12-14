@@ -1,0 +1,206 @@
+/* Светлая тема */
+html {
+    font-size: 16px;
+}
+
+body {
+    background: #f0f4ef;
+    font-family: 'Century Gothic', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+}
+
+.center {
+    background-color: #ffffff;
+    border: 3px solid #56548c;
+    box-shadow: 0 10px 30px rgba(86, 84, 140, 0.2);
+}
+
+h1 {
+    color: #56548c;
+    margin-bottom: 15px;
+    font-size: 2em;
+}
+
+h3 {
+    color: #56548c;
+    margin-bottom: 12px;
+    font-size: 1.1em;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 15px 0;
+    text-align: left;
+}
+
+li {
+    color: #56548c;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 0.95em;
+}
+
+li:before {
+    content: "•";
+    color: #56548c;
+    position: absolute;
+    left: 0;
+}
+
+/* Общие стили для всех страниц */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+.center {
+    line-height: 1.5;
+    width: 500px;
+    max-width: 90vw;
+    max-height: 90vh;
+    text-align: center;
+    position: fixed;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border-radius: 15px;
+    overflow-y: auto;
+}
+
+.button {
+    line-height: inherit;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 1em;
+    width: auto;
+    min-width: 150px;
+    padding: 10px 20px;
+    text-align: center;
+    border: 2px solid #56548c;
+    border-radius: 5px;
+    background-color: #56548c;
+    color: #ffffff;
+    outline: 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin: 6px;
+    white-space: nowrap;
+}
+
+.button:hover {
+    background-color: #454372;
+    border-color: #454372;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(86, 84, 140, 0.3);
+}
+
+.text {
+    padding: 10px 20px;
+    appearance: none;
+    outline: 0;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 220px;
+    text-align: center;
+    border: 2px solid #56548c;
+    color: #333333;
+    background-color: #ffffff;
+    margin: 12px 0;
+    font-family: 'Century Gothic', sans-serif;
+}
+
+.text:focus {
+    border-color: #454372;
+    box-shadow: 0 0 10px rgba(86, 84, 140, 0.2);
+}
+
+.wrap {
+    width: 100%;
+    margin: 0 auto;
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #ffffff;
+    border-bottom: 2px solid #56548c;
+    flex-shrink: 0;
+}
+
+.block {
+    flex: 1;
+    line-height: inherit;
+    font-size: 16px;
+    font-family: 'Century Gothic', sans-serif;
+    color: #56548c;
+    width: 25%;
+    margin: 8px 0;
+    text-align: center;
+    border-right: 3px solid #56548c;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap :last-child {
+    border-right: none;
+}
+
+.block a {
+    color: #56548c;
+    text-decoration: none;
+}
+
+.block div {
+    color: #56548c;
+    font-weight: bold;
+}
+
+hr {
+    border: none;
+    background-color: #56548c;
+    height: 3px;
+    width: 100%;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Стили для страницы результатов */
+.result-item {
+    color: #56548c !important;
+    font-size: 1em;
+}
+
+.total-score {
+    background-color: rgba(86, 84, 140, 0.1);
+    color: #56548c;
+    border: 2px solid #56548c;
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+.player-name {
+    color: #56548c;
+    font-size: 1.3em;
+}
