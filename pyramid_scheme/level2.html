@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" id="theme" href="assets/css/light.css">
+    <title>Уровень 2 - Пирамида</title>
+    <style>
+        * { padding: 0; margin: 0; box-sizing: border-box; }
+        html, body { 
+            height: 100%; 
+            width: 100%;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        canvas { 
+            display: block; 
+            flex: 1 1 0%;
+            min-height: 0;
+            width: 100%;
+            touch-action: none; 
+        }
+        .wrap { 
+            flex-shrink: 0;
+        }
+        .block .button { 
+            padding: 6px 12px; 
+            font-size: 12px; 
+            min-width: 100px; 
+            margin: 2px; 
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <hr>
+    <div class="wrap">
+        <div class="block"><input type="button" id="change_theme" class="button" value="Сменить тему"></div>
+        <div class="block"><a>Уровень</a><div id="level">№2</div></div>
+        <div class="block"><a>Таймер</a><div id="timer">0:45</div></div>
+        <div class="block"><a>Собрано</a><div id="collected">0/7</div></div>
+    </div>
+    <hr>
+
+    <script src="assets/js/level-core.js"></script>
+    <script src="assets/js/level2.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" id="theme" href="assets/css/light.css">
+    <title>Результаты - Пирамида</title>
+    <style>
+        * { padding: 0; margin: 0; box-sizing: border-box; }
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            display: block;
+        }
+        .center {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            --ui-scale: 1;
+            transform: translate(-50%, -50%) scale(var(--ui-scale));
+            transform-origin: center;
+            width: 500px;
+            max-width: 90vw;
+            max-height: 90vh;
+            padding: 18px 24px;
+            text-align: center;
+            border-radius: 15px;
+            z-index: 10;
+            overflow-y: auto;
+        }
+        .center h1 { font-size: 1.7em; margin-bottom: 6px; }
+        .center .button { padding: 10px 16px; font-size: 0.9em; margin: 3px; }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .result-item {
+            margin: 6px 0;
+            font-size: 1em;
+            color: inherit;
+        }
+        .total-score {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 12px 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .player-name {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="center">
+        <h1>Результаты</h1>
+        <div id="name" class="player-name"></div>
+        <div id="total" class="total-score"></div>
+
+        <div class="result-item" id="level1"></div>
+        <div class="result-item" id="level2"></div>
+        <div class="result-item" id="level3"></div>
+        <div class="result-item" id="attempts" style="opacity: 0.95"></div>
+        <div class="result-item" id="mode" style="opacity: 0.95"></div>
+
+        <div class="button-container">
+            <input type="button" id="reset" class="button" value="Играть снова">
+            <input type="button" id="save" class="button" value="Сохранить результаты">
+            <input type="button" id="change_theme" class="button" value="Сменить тему">
+            <a class="button" href="../index.html" id="btn_up">Вернуться на сайт</a>
+        </div>
+    </div>
+
+    <script src="assets/js/results.js"></script>
+    <script src="assets/js/ui-zoom.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+</html>
