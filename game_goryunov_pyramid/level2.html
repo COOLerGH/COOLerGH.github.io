@@ -36,10 +36,44 @@
             min-width: 100px; 
             margin: 2px; 
         }
+
+        .corner-hint{
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 50;
+            pointer-events: none;
+            max-width: min(520px, 92vw);
+            color: #ff2b2b;
+            font-family: 'Century Gothic', sans-serif;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.55);
+        }
+        .corner-title{
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 1.15;
+        }
+        .corner-sub{
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.25;
+            color: #ff4b4b;
+        }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
+
+    <div class="corner-hint" aria-hidden="true">
+        <div class="corner-title">Код для пропуска уровня - LOL, клавиша для выхода с уровня - Esc</div>
+        <div id="corner-hint-drag" class="corner-sub" style="display:none;">
+            Зажмите клавиши для добавления: R - красного, G - зелёного, B - синего.<br>
+            Для уменьшения цвета - те же клавиши + Shift.<br>
+            Код для показа кода цветов - SC.
+        </div>
+    </div>
+
     <hr>
     <div class="wrap">
         <div class="block"><input type="button" id="change_theme" class="button" value="Сменить тему"></div>
@@ -49,8 +83,8 @@
     </div>
     <hr>
 
-    <script src="assets/js/level-core.js"></script>
-    <script src="assets/js/level2.js"></script>
-    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/level-core.js?v=20251214"></script>
+    <script src="assets/js/level2.js?v=20251214"></script>
+    <script src="assets/js/theme.js?v=20251214"></script>
 </body>
 </html>

@@ -4,7 +4,9 @@
 
   const timerElement = document.getElementById('timer');
   const collectedElement = document.getElementById('collected');
-
+  //Вся логика завернута в IIFE (Immediately Invoked Function Expression) — чтобы не засорять глобальную область видимости.
+  //Берётся <canvas id="canvas"> и 2D‑контекст ctx.
+  //Берутся элементы интерфейса HUD: #timer и #collected (куда выводится оставшееся время и прогресс).
   function normalizeMode(m) {
     const s = String(m || '').trim().toLowerCase();
     if (s === 'drag' || s === 'two' || s === 'normal') return s;
@@ -22,23 +24,26 @@
   }
 
   let mode = resolveMode(); // normal | two | drag
-
+//normalizeMode(m) приводит вход к строке, обрезает пробелы, 
+// lowercase и разрешает только drag, two, normal. Всё остальное → normal
   const BASE_DPR = window.devicePixelRatio || 1;
   const BASE_HEIGHT = 600; // эталонная высота для расчёта скорости
 
   let rings = [];
+  //массив объектов-колец. Каждое кольцо хранит координаты, размер, цвет, скорость падения, признаки “собрано/тащим/возвращаем”
   let collected = [0, 0];
-
+//сколько колец собрано на каждой башне (в normal используется только [0])
   let w = 0;
   let h = 0;
+  //текущие размеры canvas в CSS-пикселях (после getBoundingClientRect())
   let speedScale = 1; // коэффициент масштабирования скорости
-
-  let rodX = [0, 0];
+//коэффициент масштабирования скорости падения, чтобы игра шла “похоже” на разных размерах/зумах
+  let rodX = [0, 0]; // x‑координаты стержней
   const rodWidth = 20;
   const baseHeight = 50;
 
   let rodColor = ['#8B4513', '#8B4513'];
-  let rodTargetRgb = [null, null];
+  let rodTargetRgb = [null, null]; //кэш распарсенного RGB стержня
 
   let startTime = 0;
   let timerId = null;
@@ -46,8 +51,9 @@
 
   let draggingId = null;
   let dragOffset = { x: 0, y: 0 };
-
+// состояние перетаскивания кольца в режиме drag
   let selectedCollectedId = null;
+  //в drag можно кликнуть по уже собранному кольцу на стержне, чтобы выделить и менять R/G/B
   let leftShiftDown = false;
 
   // overlay (для важных сообщений, чтобы не пропадали из-за перерисовки gameLoop)
@@ -139,17 +145,15 @@
     if (scPos >= CHEAT_SC.length) {
       scPos = 0;
       showRgbLabels = !showRgbLabels;
-      // Небольшая подсказка (на 700 мс), чтобы было видно, что комбинация сработала
+      // Небольшая подсказка, чтобы было видно, что комбинация сработала
       if (!completion) {
-        overlayText = showRgbLabels ? 'RGB: Вкл' : 'RGB: Выкл';
-        setTimeout(() => {
-          // не затираем другие сообщения (например, "Время вышло!")
-          if (overlayText === 'RGB: Вкл' || overlayText === 'RGB: Выкл') overlayText = null;
-        }, 700);
+        showToast(showRgbLabels ? 'RGB: Вкл' : 'RGB: Выкл', 900);
       }
     }
   }
-
+  //lerp(a,b,t) — линейная интерполяция.
+  //clamp01(t) — ограничение 0..1.
+  //easeOutCubic, easeInOutCubic, easeOutBack — кривые плавности для анимаций (подпрыгивание/приземление/возврат).
   function lerp(a, b, t) {
     return a + (b - a) * t;
   }
@@ -175,7 +179,7 @@
     v = Math.round(v);
     return Math.max(0, Math.min(255, v));
   }
-
+//гарантирует целые значения 0..255
   function parseColorToRgb(str) {
     if (!str || typeof str !== 'string') return { r: 120, g: 120, b: 120 };
     const s = str.trim().toLowerCase();
@@ -240,7 +244,7 @@
     return `rgb(${clamp255(rgb.r)}, ${clamp255(rgb.g)}, ${clamp255(rgb.b)})`;
   }
 
-  function adjustSelectedChannel(channel, delta) {
+  function adjustSelectedChannel(channel, delta) { //Изменение каналов выделенного кольца
     if (mode !== 'drag') return;
     if (!selectedCollectedId || completion) return;
 
@@ -257,7 +261,7 @@
     if (isLevelDone()) levelComplete();
   }
 
-  function getBrowserZoomFactor() {
+  function getBrowserZoomFactor() { //Компенсация зума браузера и масштаб HUD/Canvas
     const dpr = window.devicePixelRatio || 1;
     return dpr / BASE_DPR;
   }
@@ -350,7 +354,7 @@
     updateSpeedScale();
   }
 
-  function updateSpeedScale() {
+  function updateSpeedScale() { //Скорость падения
     const heightScale = h / BASE_HEIGHT;
     const comp = getZoomCompensation();
     speedScale = heightScale * comp;
@@ -444,7 +448,7 @@
     return null;
   }
 
-  function resetCollectedRings() {
+  function resetCollectedRings() { //Сброс прогресса при ошибке
     if (completion) return;
     rings.forEach(r => { r.collected = false; r.dragging = false; });
     draggingId = null;
@@ -478,7 +482,7 @@
     return x >= rx - zoneX && x <= rx + zoneX && y >= rodTop && y <= rodBottom;
   }
 
-  function colorsClose(a, b, tol = 60) {
+  function colorsClose(a, b, tol = 60) { //Цветовая проверка
     return Math.abs(a.r - b.r) <= tol && Math.abs(a.g - b.g) <= tol && Math.abs(a.b - b.b) <= tol;
   }
 
@@ -499,7 +503,7 @@
     return true;
   }
 
-  function isLevelDone() {
+  function isLevelDone() { //условие победы
     const target = window.LEVEL_SETTINGS.targetSize;
     if (mode === 'two') return collected[0] === target && collected[1] === target;
     if (mode === 'drag') return collected[0] === target && allCollectedMatchRod();
@@ -766,7 +770,9 @@
   function levelComplete() {
     if (completion) return;
     clearInterval(timerId);
-
+    //База 300, минус 1 очко за каждые 100 мс (то есть минус 10 очков/сек).
+    //Минимум 100.
+    //Сохраняется по ключу LEVEL_META.scoreKey.
     const score = Math.max(100, Math.round(300 - (Date.now() - startTime) / 100));
     localStorage.setItem(window.LEVEL_META.scoreKey, String(score));
 
@@ -1054,8 +1060,8 @@
       drawFallingRings();
     }
 
+    drawToast();
     drawOverlay();
-
     requestAnimationFrame(gameLoop);
   }
 
@@ -1192,13 +1198,13 @@
     if (timerElement) timerElement.textContent = formatMs(adjustedSettings.timeLimit);
 
     // Короткая подсказка, чтобы было видно что режим корректно определился (и бонус времени применился)
-    if (mode === 'drag') {
-      overlayText = 'Перетаскивание: +2:00';
-      setTimeout(() => {
-        if (overlayText === 'Перетаскивание: +2:00') overlayText = null;
-      }, 700);
-    }
 
+    const dragHint = document.getElementById('corner-hint-drag');
+    if (dragHint) dragHint.style.display = (mode === 'drag') ? 'block' : 'none';
+    // Короткая подсказка, чтобы было видно что режим корректно определился (и бонус времени применился)
+    if (mode === 'drag') {
+      showToast('Перетаскивание: +2:00', 900);
+    }
     hudBase = null;
     updateHudScale(true);
 
